@@ -1,0 +1,245 @@
+
+#fab_wrapper {
+    position: fixed;
+    top: 25px;
+    right:10%;
+    padding: 24px;
+    overflow: hidden;   
+    z-index: 1031;
+    width:205px;
+}
+
+#fab_content{
+    float:right;
+}
+
+.water-drop {
+    visibility: hidden;
+    position: absolute;
+    z-index: 30;
+    margin-left: 6px;
+    background: url(../images/waterdrop.svg) 0 0 no-repeat;
+    width: 42px;
+    height: 58px;
+    background-size: 42px 58px;
+}
+.button-floating-clicked .water-drop {
+    -webkit-animation: waterDrop .8s cubic-bezier(1, 0, .5, 0);
+    animation: waterDrop .8s cubic-bezier(1, 0, .5, 0);
+}
+@-webkit-keyframes waterDrop {
+    0% {
+        visibility: visible;
+    }
+    75% {
+        opacity: .6;
+    }
+    87.5% {
+        opacity: .4;
+    }
+    100% {
+        -webkit-transform: translateY(294px);
+        opacity: 0;
+    }
+}
+@keyframes waterDrop {
+    0% {
+        visibility: visible;
+    }
+    100% {
+        transform: translateY(294px);
+        opacity: 0;
+    }
+}
+
+.button {
+    position: relative;
+    border-radius: 50%;
+    margin-bottom: 18px;
+}
+.button:last-child {
+    margin-bottom: 0;
+}
+
+.button-floating::before {
+    content: "+";
+}
+.button-floating, .button-floating-shadow {
+    width: 60px;
+    height: 60px;
+}
+
+
+.button-floating {
+    font-weight: 300;
+    z-index: 40;
+    cursor: pointer;
+    background-color: var(--highlight-color);
+    color: black;
+    font-size: 42px;
+    text-align: center;
+    line-height: 60px;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+}
+.button-floating-clicked .button-floating {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+}
+
+.button-sub, .button-floating-shadow {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+}
+.button-floating-shadow {
+    position: absolute;
+    z-index: 20;
+    top: 24px;
+    border-radius: 50%;
+}
+.button-sub:hover, .button-floating:hover + .button-floating-shadow, .button-floating-clicked .button-floating-shadow {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
+}
+
+.button-sub {
+    opacity: 0;
+    z-index: 20;
+    left: 6px;
+    width: 55px;
+    background-color: white;
+    height: 55px;
+    color: #000000;
+    line-height:50px;
+    font-size:40px;
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+    -webkit-animation-fill-mode: backwards;
+    animation-fill-mode: backwards;
+}
+
+.next-to-button{
+  line-height: 54px;
+  font-size: 15px;
+  color: black;
+  position: absolute;
+  width: 187px;
+  right: 70px;
+  text-align: right;
+  background-color: #fafafa;
+
+}
+
+
+
+.button-floating-clicked-out .button-sub {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+}
+.button-floating-clicked .button-sub {
+    opacity: 1;
+    cursor: pointer;
+    -webkit-animation-name: bounceIn;
+    animation-name: bounceIn;
+}
+@-webkit-keyframes bounceIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(.3);
+    }
+    50% {
+        opacity: 1;
+        -webkit-transform: scale(1.05);
+    }
+    70% {
+        -webkit-transform: scale(.9);
+    }
+    100% {
+        -webkit-transform: scale(1);
+    }
+}
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@-webkit-keyframes fadeOut {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(0);
+    }
+}
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+.button-sub[data-color=purple] {
+    background-color: #9C27B0;
+    -webkit-animation-delay: .2s;
+    animation-delay: .2s;
+}
+.button-floating-clicked .button-sub[data-color=purple] {
+    -webkit-animation-delay: .6s;
+    animation-delay: .6s;
+}
+
+.button-sub[data-color=green] {
+    background-color: #8BC34A;
+    -webkit-animation-delay: .15s;
+    animation-delay: .15s;
+}
+.button-floating-clicked .button-sub[data-color=green] {
+    -webkit-animation-delay: .65s;
+    animation-delay: .65s;
+}
+
+.button-sub[data-color=pink] {
+    background-color: #E91E63;
+    -webkit-animation-delay: .1s;
+    animation-delay: .1s;
+}
+.button-floating-clicked .button-sub[data-color=pink] {
+    -webkit-animation-delay: .7s;
+    animation-delay: .7s;
+}
+
+.button-sub[data-color=indigo] {
+    background-color: #3F51B5;
+    -webkit-animation-delay: .05s;
+    animation-delay: .05s;
+}
+.button-floating-clicked .button-sub[data-color=indigo] {
+    -webkit-animation-delay: .75s;
+    animation-delay: .75s;
+}
+.button-floating-clicked.button-sub-purple-clicked .button-sub[data-color=purple],
+.button-floating-clicked.button-sub-green-clicked .button-sub[data-color=green],
+.button-floating-clicked.button-sub-pink-clicked .button-sub[data-color=pink],
+.button-floating-clicked.button-sub-indigo-clicked .button-sub[data-color=indigo] {
+    z-index: 0;
+    cursor: default;
+    -webkit-transition: all .4s ease-in;
+    transition: all .4s ease-in;
+    -webkit-transform: scale(30);
+    transform: scale(30);
+}

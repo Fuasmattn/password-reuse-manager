@@ -1,0 +1,65 @@
+{
+
+  "manifest_version": 2,
+  "name": "Password Reuse Manager for Firefox",
+  "version": "1.56",
+  "description": "A password manager that helps to organise reused passwords without necessarily storing secret information.", 
+  "homepage_url": "https://gitlab.lrz.de/fuasmattn/password-reuse-manager",
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+
+  },
+  "applications": {
+  "gecko": {
+    "id": "pwrm@fuasmattn.de",
+    "strict_min_version": "42.0"
+  }
+},
+
+  "permissions": [
+    "activeTab",
+    "storage",
+    "history",
+    "webRequest",
+    "<all_urls>",
+    "tabs",
+    "background"
+  ],
+
+  "content_scripts":[
+    {
+     "matches" : ["*://*/*"],
+      "js": [
+        "content_scripts/jquery.js",
+        "content_scripts/psl.min.js",
+        "content_scripts/sha512.js",
+        "content_scripts/showPW.js", 
+        "content_scripts/form-detector.js",
+        "content_scripts/mutation-observer.js"],
+      "css" : [
+        "content_scripts/material-icons/material-icons.css",
+        "content_scripts/inject.css"]
+    }
+  ], 
+
+  "background": {
+    "page": "background/background.html"
+  },
+
+  "browser_action": {
+    "default_icon": "icons/icon-48.png",
+    "default_title": "PWRM",
+    "default_popup": "popup/popup.html"
+  },
+
+
+
+  "web_accessible_resources": [
+    "content_scripts/hintbox_snippet.html",
+    "content_scripts/material-icons/*",
+    "content_scripts/icons/*"
+  ]
+
+}

@@ -1,0 +1,162 @@
+/*stylesheet created by M.Prinz 2017-10-01*/
+body, html{
+	padding: 0;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.slab, h1, h2{
+	font-family: 'roboto slab', serif;
+}
+
+h2{
+	font-weight: 600 !important;
+}
+
+section{
+	height: 100vh;
+	padding: 20px;
+}
+section:not(:first-child){
+	border-top: 2px solid black;
+}
+.lowopacity{
+	opacity: 0.8
+}
+.white.first{
+	border-top: 10px solid #FFEB3B;
+}
+
+#subline{
+	/*margin-left: 100px;*/
+}
+.parallax-container{
+	height: 50vh !important;
+	position: inherit !important;
+	width: 100%;
+}
+.container{
+	height: 100%;
+	padding-top: 2%;
+}
+.hero{
+	color: #fafafa;
+	background: linear-gradient(50deg, HSLA(0, 0%, 10%, 1), #FAFAFA);
+	width: 100%;
+	height: 100%;
+
+}
+.main-content{
+	padding-top:200px;
+	padding-bottom: 200px;
+}
+.parallax-container, .parallax{
+	position: relative !important;
+	z-index: 0 !important;
+}
+.buttons{
+	margin-top:70px;
+	padding-right:20%;
+}
+.buttons *{
+	margin: 10px;
+	/*margin-bottom: 400px;*/
+	font-size: 1.2em;
+}
+.buttons a{
+	width: 200px;
+}
+
+.btn-large.border-button{
+	background-color: transparent !important;
+	border: 2px solid black !important;
+	color: black !important;
+	box-shadow: none !important;
+}
+#herotop{
+	display:block !important;
+	width: 750px !important;
+	min-width: 750px !important;
+	min-height: auto !important;
+	position: absolute;
+	top: 30%;
+	left: auto;
+	opacity: 1;
+	z-index: 99999999;
+
+}
+
+
+nav.transparent, nav.transparent *{
+	background-color: transparent;
+	color: black;
+	font-weight: 600;
+	box-shadow: none;
+}
+
+#background{
+	height: 100vh;
+	width: 100%;
+	position: absolute;
+	/*background-image: url(../img/f_users_sketch.png);#*/
+	background-image: url(../img/bg.png);
+	background-repeat: repeat;
+	background-size: auto;
+	opacity: 0.1;
+}
+.content{
+	margin-top:50px;
+}
+#learnmore{
+	margin-top: 20px;
+}
+
+.parallax img{
+	opacity: 1;
+	z-index: -99999
+}
+
+.bookmark{
+	font-size: 1em !important;
+   /* background-color: #FFEB3B;
+    border-radius: 50%;
+    padding: 12px;
+    vertical-align: text-top;*/
+    margin-right: 43px;
+}
+
+.btn-large i {
+	font-size: 2.6rem !important;
+}
+.section{
+	height: 80vh;
+}
+
+
+.yellow{
+	background-color: #FFEB3B;
+	color: black !important;
+}
+.btn.yellow{
+	color:black;
+}
+.yellow *, .yellow > *{
+	color: black !important;
+}
+
+section:nth-child(2n+1){
+	background-color: #FAFAFA;
+}
+
+
+
+@media all and (max-width: 980px) { 
+
+	#herotop{
+		display:none !important;
+	}
+
+	.parallax img{
+		height: 100%;
+	}
+}

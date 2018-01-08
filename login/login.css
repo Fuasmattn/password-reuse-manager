@@ -1,0 +1,183 @@
+:root {
+	--highlight-color: #ffeb3b;
+	--dark-color: #212121;
+	--light-color: #f8f8f8;
+}
+/* login.css */
+
+html, body{
+	background-color: var(--light-color);
+	height:100%;
+	padding: 0 !important;
+	margin: 0 !important;
+	color: var(--dark-color);
+}
+
+html {
+	overflow: -moz-scrollbars-none;
+}
+
+
+.login-title{
+	font-weight: 400;
+	color: black;
+	/*background-color: #ffeb3b;*/
+	padding: 15px 12px;
+	text-transform: uppercase;
+	font-size: 22px;
+	letter-spacing: 1px;
+}
+
+.icon{
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	width: 32px;
+}
+
+p{
+	font-size: 1.2em;
+}
+a, a:hover{
+	color:white;
+}
+
+h2{
+	font-size:1.7em;
+}
+
+.btn-raised.btn-mp.btn-primary{
+	background-color: var(--highlight-color);
+	color: var(--dark-color);
+}
+.disabled{
+	opacity: 0.3;
+}
+
+#next{
+	position: absolute;
+	right: 30px;
+	top: 200px;
+}
+
+#next i{
+	transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+	opacity: 0.5;
+	font-size: 6em;
+	cursor: pointer;
+	color: var(--dark-color);
+}
+#next i:hover{
+	opacity: 1;
+}
+.label.label-mp{
+	font-size: 12px;
+	font-weight: 400;
+	color: black;
+	line-height: 22px;
+	background-color: var(--highlight-color);
+	position: relative;
+	display: inline-block;
+	border-radius: 2px;
+	margin-top: 4px;
+
+}
+.radio.radio-mp{
+	margin-bottom: 25px;
+}
+
+.radio-content{
+	padding-left: 15px;
+}
+
+.example{
+	margin-top:15px;
+}
+
+.radio-content .name{
+	font-size: 22px;
+	line-height: 1.5em;
+	margin-top: -5px;
+	
+}
+
+.login-container.onboarding_3{
+
+	width:600px;
+	overflow: hidden;
+}
+
+strong{
+	/*color: var(--highlight-color);*/
+}
+
+.login-container{
+	width: 60%;
+	margin: 0 auto;
+	text-align: left;
+	padding-top:30px;
+}
+.slide.last{
+	padding-top: 160px;
+}
+.slide{
+	position: relative;
+	width:600px;
+	float: left;
+	padding: 0 110px 0 75px;
+	height:510px;
+}
+
+.slide.pic{
+	padding:0;
+}
+.slide.pic > img{
+	width:600px;
+}
+.slide-wrapper{
+	width:9999px;
+}
+
+.hidden{
+	display: none;
+	transition: all 1s;
+}
+
+body.login{
+	padding-top: 0;
+}
+.bg{
+	background-color: var(--light-color);
+	color: var(--dark-color);
+}
+
+form.mpw{
+	width:100%;
+	margin: 0 auto;
+	margin-top:20px;
+}
+.form-group.mpw input{
+	height: 50px;
+	font-size: 1.2em;
+}
+
+.progress.strength{
+	/*margin-top: 10px;*/
+	background-color: #c4c4f14d;
+}
+
+.form-control[type="password"]{
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.progress{
+	height: 10px !important;
+	border-radius:0 !important;
+	border-bottom-left-radius: 2px !important;
+	border-bottom-right-radius: 2px !important;
+}
+
+.password-verdict::before{
+	content: 'Password strength: ';
+}

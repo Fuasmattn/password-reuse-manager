@@ -1,0 +1,178 @@
+  <!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../background/css/bootstrap.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Bootstrap Material Design -->
+  <link href="../background/css/material/bootstrap-material-design.css" rel="stylesheet">
+  <link href="../background/css/material/ripples.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../background/css/mp.css"/>
+  <link rel="stylesheet" href="login.css"/>
+  <script type="text/javascript" src="../background/scripts/pwstrength/zxcvbn.js"></script> 
+  
+  <script data-main="applogin" src="../background/scripts/requirejs/require.js"></script>
+
+  <title>Password-Reuse-Manager</title>
+</head>
+
+<body class="bg login">
+ <div class="login-container login bg hidden">
+   <div class="row">
+     <div class="col-lg-12">
+      <h2 class="text-center">Unlock your local storage</h2>
+    </div>
+  </div>  
+  <form>
+    <div class="form-group mpw">
+      <input type="password" class="form-control" id="inputMPW_login" placeholder="Your Masterpassword">
+      <button id="submitlogin" class="btn.btn-mp.light">CONFIRM</button>
+    </div>
+  </form>
+</div>
+<div class="login-container onboarding bg hidden">
+<img class="icon" src="../icons/icon-48.png">
+ <div class="row">
+   <div class="col-lg-12">
+    <h3 class="text-center">Welcome to PWRM</h3>
+
+    <h2 class="text-center login-title"> Password-Reuse-Manager</h2>
+    <p>Please create a Masterpassword to keep your local storage safe. Memorizing this single password is very important. You might keep a physical note in case you forget it.</p>
+  </div>
+</div>  
+<form class="mpw">
+  <div class="form-group">
+    <input type="password" class="form-control" id="inputCreateMPW" placeholder="Your Masterpassword">
+  </div>
+  <div class="text-right">
+    <a class="btn btn-primary btn-mp btn-lg btn-block btn-raised">Next Step</a>
+  </div>
+</form>
+</div>
+<div class="login-container onboarding_2 bg hidden">
+<img class="icon" src="../icons/icon-48.png">
+ <div class="row">
+   <div class="col-lg-12">
+    <h2 class="text-center">Remember it?</h2>
+    <p>Please type it again and make sure you don't forget it. You can write it down and keep a note at your home.</p>
+  </div>
+</div>  
+<form class="mpw">
+  <div class="form-group">
+    <input type="password" class="form-control" id="inputConfirmMPW" placeholder="Re-type your Masterpassword">
+  </div>
+  <div class="text-right" style="margin-top: 60px">
+    <a class="btn btn-primary btn-mp btn-lg btn-block btn-raised">Let's Start</a>
+  </div>
+   <a id="restart" class="link">Problems? Start over again.</a>
+</form>
+</div>
+<div class="login-container onboarding_3 bg hidden">
+ <div class="row">
+   <div class="col-lg-12">
+     <div class="slide-wrapper">
+      <div class="slide">
+        <h2 class="text-center">Isn't that great?</h2>
+        <p>We help to organise your <strong>unique</strong> and <strong>reused</strong> passwords just like you are already used to do.</p>
+        <p>You can create <strong>Reused Passwords</strong> to remember passwords you use for multiple online accounts.</p>
+        <p>Nevertheless, you can store any password if you wish to. Stored Passwords are encrypted and only kept locally in your browser's storage. If you are using a Firefox Account, your stored information is synchronized across devices.</p> 
+      </div>
+       <div class="slide pic">
+        <img src="intro_1.png">
+      </div>
+      <div class="slide pic">
+        <img src="intro_2.png">
+      </div>
+      <div class="slide pic">
+        <img src="intro_3.png">
+      </div>
+         <div class="slide pic">
+        <img src="intro_4.png">
+      </div>
+      <div class="slide">
+        <h2 class="text-center">How do you organise your passwords?</h2>
+        
+        <div class="radio radio-mp">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="mode_topic" checked>
+            <div class="radio-content">
+             <div class="name">By Topic</div>
+             <div class="example">
+               <span class="label label-default label-mp">Private</span>
+               <span class="label label-default label-mp">Work</span>
+               <span class="label label-default label-mp">Banking</span>
+               <span class="label label-default label-mp">Other</span>
+             </div>
+           </div>
+
+         </label>
+       </div>
+       <div class="radio radio-mp">
+        <label>
+          <input type="radio" name="optionsRadios" id="optionsRadios2" value="mode_importance">
+          <div class="radio-content">
+           <div class="name">By Importance</div>
+           <div class="example">
+            <span class="label label-default label-mp">Very Important</span>
+            <span class="label label-default label-mp">Important</span>
+            <span class="label label-default label-mp">Less Important</span>
+            <span class="label label-default label-mp">Other</span>
+          </div>
+        </div>
+      </label>
+    </div>
+    <div class="radio radio-mp">
+      <label>
+        <input type="radio" name="optionsRadios" id="optionsRadios3" value="mode_frequency" >
+        <div class="radio-content">
+         <div class="name">By Frequency</div>
+         <span class="label label-default label-mp">Daily</span>
+         <span class="label label-default label-mp">Weekly</span>
+         <span class="label label-default label-mp">Less Frequent</span>
+       </div>
+     </label>
+   </div>
+   <div class="radio radio-mp">
+    <label>
+      <input type="radio" name="optionsRadios" id="optionsRadios4" value="mode_hints">
+      <div class="radio-content">
+       <div class="name">None of the above</div>
+       <span class="label label-default label-mp">Other</span>
+     </div>
+   </label>
+ </div>
+</div>
+<div class="slide last">
+  <h2 class="text-center">You are ready to start!</h2>
+  <div class="text-center">
+    <a id="btnOpenManager" class="btn btn-primary btn-mp btn-lg btn-raised">Open Manager</a>
+  </div>
+</div>
+
+</div>
+<a id="next"><i class="material-icons">keyboard_arrow_right</i></a>
+</div>
+</div>  
+</div> 
+<script type="text/javascript" src="../background/scripts/jquery/jquery.js"></script>
+<script src="../background/scripts/material/material.js"></script>
+<script src="../background/scripts/material/ripples.js"></script>
+ 
+<script type="text/javascript" src="../background/scripts/pwstrength/dist/pwstrength-bootstrap.min.js"></script>
+ <script type="text/javascript" src="../background/scripts/cryptojs/rollups/sha512.js"></script>
+<script type="text/javascript" src="../background/scripts/cryptojs/rollups/pbkdf2.js"></script>
+<script type="text/javascript" src="../background/scripts/cryptojs/rollups/aes.js"></script>
+<script language="JavaScript" type="text/javascript" src="../background/scripts/cryptico/jsbn.js"></script>
+<script language="JavaScript" type="text/javascript" src="../background/scripts/cryptico/random.js"></script>
+<script language="JavaScript" type="text/javascript" src="../background/scripts/cryptico/hash.js"></script>
+<script language="JavaScript" type="text/javascript" src="../background/scripts/cryptico/rsa.js"></script>
+<script language="JavaScript" type="text/javascript" src="../background/scripts/cryptico/aes.js"></script>
+<script language="JavaScript" type="text/javascript" src="../background/scripts/cryptico/api.js"></script>
+<script type="text/javascript" src="../background/scripts/cryptico/cryptico.js"></script> 
+  <!-- <script type="text/javascript" src="login.js"></script>  -->
+
+</body>
+
+</html>

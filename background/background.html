@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap default -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <!-- Bootstrap Material Design -->
+  <link href="css/material/bootstrap-material-design.css" rel="stylesheet">
+  <link href="css/material/ripples.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/mp.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/fab.css">
+  <link rel="stylesheet" href="css/checkbox.css">
+  <!-- Fonts -->
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<!-- Add zxcvbn before loading requirejs -->
+  <script type="text/javascript" src="scripts/pwstrength/zxcvbn.js"></script>
+
+  <script data-main="app" src="scripts/requirejs/require.js"></script>
+  <title>Password Reuse Manager</title>
+
+</head>
+<body>
+  <div id="webexID"></div>
+  <datalist id="historyList"></datalist>
+
+  <div id="fab_wrapper">
+    <div id="fab_content">
+     <div class="water-drop"></div>
+     <div class="button button-floating"></div>
+     <div class="button-floating-shadow"></div>
+     <div class="button button-sub" data-toggle="modal" data-target="#modal-newEntry"><p class="next-to-button">Account Entry</p><div class="text-center"><i class="material-icons">bookmark</i></div></div>
+     <div class="button button-sub" data-toggle="modal" data-target="#modalCategory"><p class="next-to-button">Reused Password</p><div class="text-center"><i class="material-icons">book</i></div></div>
+     <!--  <div class="button button-sub" data-toggle="modal" data-target="#modalModification"><p class="next-to-button">Modification</p><div class="text-center"><i class="material-icons">cached</i></div></div> -->
+   </div>
+ </div>
+
+
+ <nav class="navbar navbar-default navbar-fixed-top navbar-mp">
+   <div id="burger"><i class="material-icons">menu</i></div>
+   <div class="container fixed">
+    <form>
+      <div class="form-group search has-feedback has-feedback-left">
+        <input id="search" type="text" class="form-control" placeholder="Search" />
+        <i id="search-icon" class="form-control-feedback material-icons">search</i>
+      </div>
+    </form>
+  </div>
+</nav>
+
+<aside id='sidebar'>
+  <div class="sidebar-head"></div>
+  <div class="sidebar-row active" id="sidebar-categories" data-toggle="tooltip" data-placement="right" title="Categories">
+    <i class="material-icons">book</i>
+    <p>Reused Passwords</p>
+  </div>
+  <div class="sidebar-row" id="sidebar-unique"  data-toggle="tooltip" data-placement="right" title="Unique Passwords">
+    <i class="material-icons">list</i>
+    <p>Unique Passwords</p>
+  </div>
+ <!--  <div class="sidebar-row" id="sidebar-modifications">
+    <i class="material-icons">cached</i>
+    <p>PW Modifications</p>
+  </div> -->
+  <hr>
+  <div class="sidebar-row" id="sidebar-preferences"  data-toggle="tooltip" data-placement="right" title="Preferences">
+    <i class="material-icons">build</i>
+    <p>Preferences</p>
+  </div>
+  <div class="sidebar-row hidden" id="sidebar-about"  data-toggle="tooltip" data-placement="right" title="About">
+    <i class="material-icons">info</i>
+    <p>About</p>
+  </div>
+</aside>
+
+
+<div class="container fixed">
+  <div class="mp-section" id="section-categories">
+    <div class="row content" id="content">
+     <div class="page-header">
+       <h1><i class="material-icons"></i>Reused Passwords</h1>
+       <p class="section-content">Organise your reused passwords - each card element represents a single password. You can assign multiple accounts that (re)use that password to a "category". The actual storage of passwords is optional.</p>
+     </div>
+     <div id="categoryContainer"></div>
+   </div>
+   <div>
+     <div class="card-wrapper">
+     </div>
+     <div id="entryContainer"></div>
+   </div>
+ </div>
+ <div class="mp-section" id='section-unique'>
+   <div class="content row">
+     <div class="page-header">
+       <h1>Unique Passwords</h1>
+       <p class="section-content">Here you find all account entries you explicitly create with a stored password.</p>
+     </div>
+     <div class="card-wrapper">
+       <div id="uniqueEntryContainer">
+       </div>
+     </div>
+   </div>
+ </div>
+ <div class="mp-section" id='section-modifications'>
+   <div class="content row">
+     <div class="page-header">
+       <h1>Password Modifications</h1>
+       <p class="section-content">TODO</p>
+     </div>
+     <div class="card-wrapper">
+       <div id="modificationEntryContainer"></div>
+     </div>
+   </div>
+ </div>
+ <div class="mp-section" id='section-preferences'>
+   <div class="content row">
+     <div class="page-header">
+       <h1>Preferences</h1>
+       <div class="section-content" id="preferences">
+
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" id="pref_autofill_username"><span class="checkbox-material"></span>  Autofill username
+            </label>
+          </div>
+          <p>Enable autofilling usernames in login forms.</p>
+        </div>
+        <div class="form-group">
+          <div class="checkbox ">
+            <label>
+              <input  type="checkbox" id="pref_autofill_password"><span class="checkbox-material"></span>  Autofill password
+            </label>
+          </div>
+          <p>Enable autofilling password fields in case of stored password. For your convenience your Masterpassword will be stored unencrypted in your browser. This helps to decrypt your stored passwords automatically for autofilling forms. Deactivating this option will delete the stored Masterpassword.</p>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<div class="mp-section" id='section-about'>
+ <div class="content row">
+   <div class="page-header">
+    <div class="hidden">
+     <h2>Disclaimer</h2>
+     <p class="section-content">This is a browser-based password manager helping you to organize your accounts and passwords. <mark>To conduct a fieldstudy, single actions are logged on external files on the web. The logging is transparent and can be found at <a target="_blank" href="http://fuasmattn.de/pwm_logserver/logger.php">fuasmattn.de</a>.</mark> All data gathered by the manager is stored locally in the browser's storage. Passwords are encrypted via an JS implementation of AES and your Masterpassword as a key. The masterpassword's integrity is ensured by using a SHA-2 Hash for storage and comparison.</p>
+     <p class="section-content"><span class="warning">Warning!</span> This is a early version. <mark>The Browser Storage architecture and encryption via Javascript are not secure</mark>. Keep your device safe. We do not garantee yet to stand against cross-extension/site attacks.</p>
+     <h2>Contact</h2>
+     <p class="section-content">Contact: <a href="mailto:prinzm@cip.ifi.lmu.de">mprinz@cip.ifi.lmu.de</a></p>
+     <p class="section-content">Project: <a target="_blank" href="https://gitlab.lrz.de/fuasmattn/password-reuse-manager">Gitlab Project</a></p>
+
+     <hr>
+     <h2>Third-Party-Software</h2>
+     <ul>
+      <li><a target="_blank" href="http://requirejs.org/">requireJS</a></li>
+        <li><a target="_blank" href="  https://github.com/ablanco/jquery.pwstrength.bootstrap">Bootstrap Password Meter</a></li>
+         <li><a target="_blank" href="https://github.com/sytelus/CryptoJS">CryptoJS</a></li>
+          <li><a target="_blank" href="http://1000hz.github.io/bootstrap-validator/">Validator for Bootstrap</a></li>
+      <li><a target="_blank" href="https://github.com/wrangr/psl">PSL</a></li>
+       <li><a target="_blank" href="http://www.louistiti.fr/tutoriel-html5-css3-jquery-bouton-action-goutte-eau-morphing-material-design/34">FAB Button</a></li>
+     <li><a target="_blank" href="http://getbootstrap.com">Bootstrap</a></li>
+      <li><a target="_blank" href="http://fezvrasta.github.io/bootstrap-material-design">Bootstrap-Material-Design</a></li>
+      <li><a target="_blank" href="https://material.io/icons/">Material Icons</a></li>
+      <li><a target="_blank" href="https://jquery.com/">jQuery</a></li>
+
+
+    </ul>
+</div>
+  </div>
+  <div class="card-wrapper">
+   <!-- <div id="modificationEntryContainer"></div> -->
+ </div>
+</div>
+</div>
+<div class="mp-section" id='section-searchresults'>
+ <div class="content row">
+   <div class="page-header">
+     <h1>Results for: <small></small></h1>
+   </div>
+   <div class="card-wrapper">
+     <div id="searchEntryContainer">
+       <div id="searchResults-category"></div>
+       <hr>
+       <div id="searchResults-unique"></div>
+     </div>
+   </div>
+ </div>
+</div>
+<div id="modal-newEntry" class="modal modal-mp fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">New Account Entry</h2>
+      </div>
+      <div class="modal-body">
+        <form role="form" data-toggle="validator"> 
+
+          <div class="form-group has-feedback">
+            <label for="enterURL">URL</label>             
+            <input id="enterURL" list="historyList" class="form-control new-entry url" minlength="1" type="url" placeholder="https://www." required/>
+            <span class="glyphicon form-control-feedback" ></span><div class="help-block with-errors"></div>
+          </div>
+          <div class="form-group has-feedback">
+            <label for="enterName">Username</label>   
+            <input id="enterName" class="form-control new-entry username" type="text" minLength="1" placeholder="Your username or email" required/>
+            <span class="glyphicon form-control-feedback" ></span>
+            <div class="help-block with-errors"></div>
+          </div>
+        </form>
+        <form role="form" data-toggle="validator" id="radio-form">
+          <div class="form-group">
+            <div class="radio">
+              <label>
+                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option-category" checked="true"><span class="circle"></span><span class="check"></span>
+                Assign to a Reused Password
+              </label>
+              <label class="active"></label>
+            </div>
+            <div class="radio">
+             <label>
+               <input type="radio" name="optionsRadios" id="optionsRadios2" value="option-pwd"><span class="circle"></span><span class="check"></span>
+               Use a unique password
+             </label>
+           </div>
+         </div>
+       </form>
+       <form role="form" data-toggle="validator">
+        <div class="form-group radio-option option-category" value="option-category">
+          <label for="categoryDropdown">Choose Reused Password</label>
+          <select class="form-control" id="categoryDropdown"><!-- fill <options> on init() --></select>
+          <a class="link" data-toggle="modal" data-target="#modalCategory">Create new Reused Password</a>
+        </div>
+        <div class="form-group has-feedback radio-option option-pwd hidden" value="option-pwd">
+          <label for="enterPWD">Enter a Unique Password</label>
+          <input minlength="1" id="enterPWD" class="form-control new-entry pwd" type="password" placeholder="" required/>
+          <span class="glyphicon form-control-feedback" ></span>
+          <div class="help-block with-errors"></div>
+        </div>
+      </form>
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-mp light" data-dismiss="modal">Close</button>
+      <button id="addEntry" type="submit" class="btn btn-primary btn-mp">Save</button>
+    </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal Category -->
+<div class="modal modal-mp fade" id="modalCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+       <h2 class="modal-title" id="myModalLabel">Reused Password</h2>
+     </div>
+     <div class="modal-body">
+       <form role="form" data-toggle="validator">
+        <div class="form-group has-feedback">
+          <!-- <label for="category-name">Category Name</label> -->
+          <input type="text" minlength="1" class="form-control" id="modalCategoryName" placeholder="Give it a Name" Name" required>
+          <span class="glyphicon form-control-feedback" ></span>
+          <div class="help-block with-errors"></div>
+        </div>
+        <div id="pw-hint">
+          <i class="material-icons hastext">lightbulb_outline</i><span>Save a hint that helps to remember your password instead of storing it.</span>
+        </div>
+     
+
+        <div id="enter-category-pwd" class="form-group has-feedback hidden">
+          <label for="category-pwd">Enter a Reused Password</label>
+          <input type="password" minlength="1" class="form-control" id="category-pwd" placeholder="Password" required>
+          <span class="glyphicon form-control-feedback" ></span>
+          <div class="help-block with-errors"></div>
+        </div>
+        <div id="enter-category-hint" class="form-group has-feedback">
+          <label for="category-hint">Enter a Hint for this Reused Password</label>
+          <input type="text" minlength="1" class="form-control" id="category-hint" placeholder="Your Hint (e.g. my first movie & old password)" required>
+          <span class="glyphicon form-control-feedback" ></span>
+          <div class="help-block with-errors"></div>
+        </div>
+           <a id="btnAddPWD">set password</a>
+      </form>
+    </div>
+    <div class="modal-footer">
+     <div id="modalAction">
+      <button type="button" class="btn btn-default btn-mp light" data-dismiss="modal">Close</button>
+      <button id="addCategory" type="button" class="btn btn-primary btn-mp">Save</button>
+    </div>
+    <div id="modalYesNo" class="hidden"><span>Are you sure you want to update this category?</span>
+      <button id="modalNo" type="button" class="btn btn-default btn-mp light">Cancel</button>
+      <button id="modalYes" type="submit" class="btn btn-primary btn-mp" data-dismiss="modal">Confirm</button>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="modal modal-mp fade" id="modalMPW" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+     <div class="modal-body">
+       <form role="form" data-toggle="validator">
+        <div class="form-group">
+
+          <input type="password" class="form-control" id="modalInputMPW" placeholder="Enter Masterpassword" required>
+          <button class="btn btn-primary btn-mp confirm">Confirm</button>
+        </div>
+        <div class="modal-hint hidden">
+          <i class="material-icons hastext">help_outline</i><span><a href="#">Forgot your Masterpassword?</a></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div> 
+
+
+
+<script src="scripts/jquery/jquery.js"></script>
+<script src="scripts/bootstrap/bootstrap.js"></script>
+<script src="scripts/tools/validator.js"></script>
+
+ <script type="text/javascript" src="scripts/pwstrength/dist/pwstrength-bootstrap.min.js"></script>
+<script src="scripts/tools/autocomplete.js"></script>
+<script src="scripts/material/material.js"></script>
+<script src="scripts/material/ripples.js"></script>
+<script src="scripts/ui/fab.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

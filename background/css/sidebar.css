@@ -1,0 +1,89 @@
+/*sidebar
+Martin Prinz 14.06.2017*/
+
+:root {
+	--primary-color: #58568f; /* alternatives: #58568f; #a124ae; */
+	--highlight-color: #ffeb3b;
+	--dark-color: #212121;
+	--neutral-color: #d5d5d5;
+}
+
+#sidebar{
+	background-color: #fafafa;
+	height: 100%;
+	width: 310px;
+	max-width: 310px;
+	position: fixed;
+	padding-top: 80px;
+	
+}
+
+
+.sidebar-row.active{
+	color: #212121;
+	background-color: #EDEDED;
+}
+
+.sidebar-row.active:hover{
+	color: #212121;
+	background-color: #EDEDED;
+}
+
+.sidebar-head{
+	/*background-color: #EDEDED;*/
+	height:50px;
+}
+
+.sidebar-row{
+	color: #595959;
+	margin-left:10px;
+	padding:0px 15px;
+	-webkit-transition: all 0.2s ease-in-out;
+	-o-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
+}
+.sidebar-row:hover{
+	color: #212121;
+	background-color: #F3F3F3;
+	cursor: pointer;
+}
+
+.sidebar-row > *{
+	display:inline-block;
+	/*	height: 67px;
+	line-height: 67px;*/
+	height: 60px;
+	line-height: 60px;
+
+}
+.sidebar-row > p{
+	margin-bottom: 0 !important;
+	padding: 0;
+	padding-left: 46px;
+	padding-right: 56px;
+	clear: both;
+	font-weight: 400;
+	font-size: 18px;
+}
+.sidebar-row > .material-icons{
+	font-size: 24px;
+	margin-right: 16px;
+	line-height: 53px;
+	vertical-align: middle;
+	position: fixed;
+
+}
+
+.sidebar-row > .material-icons.blink{
+	 animation-duration: 1000ms;
+   animation-name: blink;
+   animation-iteration-count: infinite;
+   animation-direction: alternate;
+
+}
+
+@keyframes blink {
+  0%{color: black}
+  60%{ color: var(--highlight-color)}
+  100%{color: var(--highlight-color)}   
+ }

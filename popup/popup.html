@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet"> 
+	<link rel="stylesheet" href="../background/css/fab.css"/>
+	<link rel="stylesheet" href="popup.css"/>
+	<link rel="stylesheet" href="../background/css/bootstrap.css"/>
+	
+</head>
+
+<body>
+	<div id="feedback" class="text-center">
+		<h2></h2>
+	</div>
+	<div>
+		<div class="head">
+			<div class="grid left">
+				<img class="placeholder-img" src="">
+			</div>
+			<div class="grid middle">
+				<span id="thisURL"></span><br>
+				<p id="ask"></p>
+			</div>
+			<div id="fab_wrapper">
+			 	<div id="fab_content">
+					<div class="water-drop"></div>
+					<div class="button button-floating"></div>
+					<div class="button-floating-shadow"></div>
+				</div>
+			</div>		
+		</div>
+		<div class="mid mp-hidden container">
+			<div class="forms">
+				<p id="hint"></p>
+				<form id="form-username" role="form" data-toggle="validator">      
+					<div class="form-group has-feedback">
+						<input id="enterName" class="form-control new-entry username" minlength="1" type="text" placeholder="username" required/>
+						<span class="glyphicon form-control-feedback" ></span>
+						<div class="help-block with-errors"></div>
+					</div>
+				</form>
+				<form id="radio-form">
+					<div class="radio">
+						<label class="active">
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option-category" checked="true">
+							Assign to a password category
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" name="optionsRadios" id="optionsRadios2" value="option-pwd">
+							Use a unique password
+						</label>
+					</div>
+				</form>
+				<form role="form" data-toggle="validator">
+					<div class="form-group radio-option option-category" value="option-category">
+						<label for="categoryDropdown">Choose Password Category</label>
+						<select class="form-control select-mp" id="categoryDropdown"><!-- fill <options> on init() --></select>
+					</div>
+					<div class="form-group has-feedback radio-option option-pwd hidden" value="option-pwd">
+						<label for="enterPWD">Enter a Unique Password</label>
+						<input id="enterPWD" class="form-control new-entry pwd" minLength="1" type="password" placeholder="" required/>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+		<div class="footer">
+			<a class="link manager btn-mp light">Open Manager</a>
+		</div>
+		<script src="../background/scripts/jquery/jquery.js"></script>
+		<script src="../background/scripts/ui/fab.js"></script>
+		<script src="../background/scripts/bootstrap/bootstrap.js"></script><script src="../background/scripts/tools/validator.js"></script>
+		<script type="text/javascript" src="../background/scripts/pwstrength/dist/pwstrength-bootstrap.min.js"></script>
+		<script type="text/javascript" src="../background/scripts/cryptojs/rollups/sha512.js"></script>
+		<script src="popup.js"></script>   
+	</body>
+
+	</html> 
